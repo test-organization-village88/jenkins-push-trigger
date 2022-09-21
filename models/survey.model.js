@@ -1,10 +1,10 @@
-const Mysql                 = require('mysql');
-const Model 				= require('./model');
-const Constants 			= require('../config/constants');
+// const Mysql                 = require('mysql');
+// const Model 				= require('./model');
+// const Constants 			= require('../config/constants');
 
-class SurveyModel extends Model {
+class SurveyModel {
 	constructor() {
-		super();
+		// super();
 		this.captcha = null;
 	}
 
@@ -46,11 +46,16 @@ class SurveyModel extends Model {
 
 	// supply the logic for each function:
 	generateCaptcha(){
-		return ""; 
+		this.captcha = Math.random() * 9999;
 	}
 
 	verifyCaptchaInput(input){
-		return ""; 
+		if (input === this.captcha) {
+			return 'Success! Captcha input matched.';
+		}
+		else {
+			return "Error! Captcha input doesn't matched.";
+		}
 	}
 }
 
